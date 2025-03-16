@@ -3,7 +3,7 @@ def check_input_user_int():
         try:
             input_user = int(input())
             break
-        except:
+        except ValueError:
             print("Некорректный ввод! Введите целое число!")
 
     return input_user
@@ -13,7 +13,7 @@ def check_input_user_double():
         try:
             input_user = float(input())
             break
-        except:
+        except ValueError:
             print("Некорректный ввод! Введите вещественное число!")
 
     return input_user

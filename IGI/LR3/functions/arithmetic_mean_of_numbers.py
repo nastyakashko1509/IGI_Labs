@@ -1,6 +1,9 @@
 from functions.check_input_user import check_input_user_double
 
 def arithmetic_mean_of_numbers():
+    """
+    Реализация ввода пользователя для вычисления среднего арифметического чисел.
+    """
     result_task_2 = 0
     i = 0
 

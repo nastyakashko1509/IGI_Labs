@@ -3,6 +3,17 @@ import string
 
 from functions.check_input_user import check_input_user_double
 
+def log_choice(func):
+    """
+    Декоратор для логирования выбора пользователя.
+    """
+    def wrapper(*args, **kwargs):
+        print(f"Вызывается функция {func.__name__}")
+        result = func(*args, **kwargs)
+        print(f"Функция {func.__name__} завершена")
+        return result
+    return wrapper
+
 def initialize_with_generator(sequence):
     """
     Функция для инициализации последовательности с помощью генератора случайных чисел.
@@ -24,6 +35,7 @@ def initialize_with_input(sequence):
             sequence.append(input_number)
     return sequence
 
+@log_choice
 def choise_initialize_sequence():
     """
     Функция, позволяющая выбирать пользователю способ инициализации последовательности.
@@ -36,7 +48,7 @@ def choise_initialize_sequence():
             sequence = initialize_with_input(sequence)
         else:
             sequence = initialize_with_generator(sequence)
-    except:
+    except ValueError:
         sequence = initialize_with_generator(sequence)
         
     return sequence
@@ -55,6 +67,7 @@ def initialize_string_with_input():
     user_input = str(input())
     return user_input
 
+@log_choice
 def choise_initialize_string():
     """
     Функция, позволяющая выбирать пользователю способ инициализации строки.
@@ -66,7 +79,7 @@ def choise_initialize_string():
             input_string = initialize_string_with_input()
         else:
             input_string = initialize_string_with_generator()
-    except:
+    except ValueError:
         input_string = initialize_string_with_generator()
 
     return input_string

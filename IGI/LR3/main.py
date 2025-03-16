@@ -32,13 +32,17 @@ while True:
     choise_user = int(check_input_user_int())
     if choise_user == 1:
         # 1 task
-        print("Введите число в пределах от -1 до 1:")
-        input_number_1 = int(check_input_user_int())
+        while True:
+            print("Введите число в пределах от -1 до 1:")
+            input_number_1 = int(check_input_user_int())
 
-        print("Введите допустимую погрешность:")
-        input_eps = float(check_input_user_double())
+            print("Введите допустимую погрешность:")
+            input_eps = float(check_input_user_double())
 
-        result_task_1 = float(power_series_expansion(input_number_1, input_eps))
+            if power_series_expansion(input_number_1, input_eps) != None:
+                break
+
+        result_task_1 = power_series_expansion(input_number_1, input_eps)
         print(f"arccos({input_number_1}) = {result_task_1}")
 
     elif choise_user == 2:
