@@ -7,9 +7,9 @@ def log_choice(func):
     """
     Декоратор для логирования выбора пользователя.
     """
-    def wrapper(*args, **kwargs):
+    def wrapper(): # *args, **kwargs
         print(f"Вызывается функция {func.__name__}")
-        result = func(*args, **kwargs)
+        result = func() # *args, **kwargs
         print(f"Функция {func.__name__} завершена")
         return result
     return wrapper
@@ -53,11 +53,11 @@ def choise_initialize_sequence():
         
     return sequence
 
-def initialize_string_with_generator(length=10, chars=string.ascii_letters + string.digits):
+def initialize_string_with_generator():
     """
     Функция для инициализации строки с помощью генератора случайных символов.
     """
-    return str(''.join(random.choice(chars) for _ in range(length)))
+    return str(''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randint(1, 10))))
 
 def initialize_string_with_input():
     """
