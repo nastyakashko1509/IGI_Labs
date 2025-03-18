@@ -37,7 +37,7 @@ def count_brackets(input_string):
         if i in punctuation_brackets_close:
             count_close += 1
 
-    return min(count_open, count_close)
+    return max(count_open, count_close)
 
 def count_quotes(input_string):
     """
