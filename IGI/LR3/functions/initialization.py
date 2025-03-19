@@ -14,11 +14,15 @@ def log_choice(func):
         return result
     return wrapper
 
+def initialize_float_list_with_gen():
+    """
+    Генератор для создания списка заданной длины, состоящего из случайных вещественных чисел.
+    """
+    for _ in range(10):
+        yield round(random.uniform(-100.0, 100.0), 2)
+
 def initialize_with_generator(sequence):
-    """
-    Функция для инициализации последовательности с помощью генератора случайных чисел.
-    """
-    sequence.extend(random.uniform(-100, 100) for _ in range(random.randint(1, 10)))
+    sequence = list(initialize_float_list_with_gen())
     return sequence
 
 def initialize_with_input(sequence):
@@ -53,11 +57,17 @@ def choise_initialize_sequence():
         
     return sequence
 
+def initialize_string_with_gen():
+    """
+    Генератор для создания строки заданной длины, состоящей из случайных символов.
+    """
+    chars = string.ascii_letters + string.digits
+    for _ in range(20):
+        yield random.choice(chars)  
+
 def initialize_string_with_generator():
-    """
-    Функция для инициализации строки с помощью генератора случайных символов.
-    """
-    return str(''.join(random.choice(string.ascii_letters + string.digits) for _ in range(random.randint(1, 10))))
+    result = ''.join(initialize_string_with_gen())
+    return result
 
 def initialize_string_with_input():
     """

@@ -20,6 +20,10 @@ from functions.initialization import choise_initialize_string
 from functions.check_input_user import check_input_user_int
 from functions.check_input_user import check_input_user_double
 
+# raise ValueError("Неверное значение") 
+# x = 2
+# assert x > 5
+
 while True:
     print("1) Подсчёт арккосинуса введённого числа\n"
           "2) Подсчёт среднего арифметического введённых чисел\n"

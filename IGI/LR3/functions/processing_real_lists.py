@@ -8,13 +8,15 @@ def find_max_number(number_reall_ist):
             max_number = i
     return max_number
 
-def calculate_product_of_negative_elements(number_reall_ist):
+def calculate_product_of_negative_elements(number_reall_ist, max_number):
     """
     Функция для подсчета произведения отрицательных чисел.
     """
     product_of_negative_elements = 1
     count = 0
     for i in number_reall_ist:
+        if i == max_number: 
+            break
         if i < 0:
             product_of_negative_elements *= i
             count += 1
@@ -24,13 +26,15 @@ def calculate_product_of_negative_elements(number_reall_ist):
     else:
         return product_of_negative_elements
 
-def calculate_sum_of_positive_elements(number_reall_ist):
+def calculate_sum_of_positive_elements(number_reall_ist, max_number):
     """
     Функция для подсчета суммы положительных чисел.
     """
     sum_of_positive_elements = 0
     count = 0
     for i in number_reall_ist:
+        if i == max_number: 
+            break
         if i > 0:
             sum_of_positive_elements += i
             count += 1
@@ -51,13 +55,13 @@ def processing_real_lists(number_reall_ist):
     max_number = find_max_number(number_reall_ist)
     print(f"Максимальный элемент: {max_number}")
 
-    product_of_negative_elements = calculate_product_of_negative_elements(number_reall_ist)
+    product_of_negative_elements = calculate_product_of_negative_elements(number_reall_ist, max_number)
     if product_of_negative_elements is None:
         print("В списке нет отрицательных чисел")
     else:
         print(f"Произведение отрицательных чисел в списке: {product_of_negative_elements}")
 
-    sum_of_positive_elements = calculate_sum_of_positive_elements(number_reall_ist)
+    sum_of_positive_elements = calculate_sum_of_positive_elements(number_reall_ist, max_number)
     if sum_of_positive_elements is None:
         print("В списке нет положительных чисел")
     else:
