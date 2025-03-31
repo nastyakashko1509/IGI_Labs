@@ -1,5 +1,15 @@
 class WorkingWithDataQuestionnaires:
 
+    def working_with_data_questionnaires(self, output_people_1, output_people_2):
+        print("Средний рост женщин в анкетных данных: ", self.the_average_height_of_women(output_people_1))
+        print("Фамилия самого высокого мужчины: ", self.tallest_man(output_people_1))
+        print("Есть ли люди с одинаковым ростом: ", self.people_of_the_same_height(output_people_1))
+        print("Введите фамилию человека, чтобы узнать информацию о нём:")
+        sername = str(input())
+        print(self.information_about_a_person(sername, output_people_2))
+
+        return None
+
     def the_average_height_of_women(self, dictionary_of_people_data):
         '''  Метод, позволяющий считать средний рост женщин.  '''
         sername_gender_and_height = list(dictionary_of_people_data.values())
@@ -53,3 +63,4 @@ class WorkingWithDataQuestionnaires:
         
         information_people = "Нет человека с такой фамилией в анкетах"
         return information_people
+    
