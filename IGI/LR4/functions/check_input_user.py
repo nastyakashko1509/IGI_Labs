@@ -1,4 +1,5 @@
 def check_input_user_int():
+    '''  Метод, проверяющий ввод целого числа пользователем  '''
     while True:
         try:
             input_user = int(input())
@@ -9,6 +10,7 @@ def check_input_user_int():
     return input_user
 
 def check_input_user_double():
+    '''  Метод, проверяющий ввод вещественного числа пользователем  '''
     while True:
         try:
             input_user = float(input())
