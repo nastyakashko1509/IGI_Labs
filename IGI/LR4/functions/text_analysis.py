@@ -3,7 +3,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 
 class TextAnalysis:
     def text_analysis(self, text):
-        '''  Метод, позволяющий проанализировать текст.  '''
+        """  Метод, позволяющий проанализировать текст.  """
 
         str1 = "Список дат в тексте: " + str(self.getting_a_list_of_dates(text)) + "\n"
         str2 = "Список слов, заканчивающихся на согласную_гласную: " + str(self.getting_a_list_of_words(text)) + "\n"
@@ -18,8 +18,8 @@ class TextAnalysis:
         str_all = str1 + str2 + str3 + str4 + str5 + str6 + str7 + str8 + str9 + str10
         print(str_all)
 
-        text_file = "D:\\IGI_Labs\\IGI\\LR4\\task2.txt"
-        zip_file = "D:\\IGI_Labs\\IGI\\LR4\\task2.zip"
+        text_file = "D:\\IGI_Labs\\IGI\\LR4\\file_work\\task2.txt"
+        zip_file = "D:\\IGI_Labs\\IGI\\LR4\\file_work\\task2.zip"
 
         with open(text_file, "w", encoding="utf-8") as f:
             f.write(str_all)
@@ -30,7 +30,7 @@ class TextAnalysis:
         print(self.information_about_zip(zip_file))
 
     def information_about_zip(self, zip_file):
-        '''  Метод, позволяющий получить информацию об архиве с результатами выполнения анализа текста.  '''
+        """  Метод, позволяющий получить информацию об архиве с результатами выполнения анализа текста.  """
 
         print("Хотите получить информацию об архиве с результатами выполнения всех функций? 1 - да, иначе - нет")
         input_user = int(input())
@@ -49,13 +49,13 @@ class TextAnalysis:
             return
 
     def getting_a_list_of_dates(self, text):
-        '''  Метод, возвращающий список дат (00-00-0000), найденных в тексте.  '''
+        """  Метод, возвращающий список дат (00-00-0000), найденных в тексте.  """
 
         parts = re.findall(r'(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\d{4})', text)
         return ['-'.join(part) for part in parts]
  
     def getting_a_list_of_words(self, text):
-        '''  Метод, возвращающий список слов, у которых последня буква гласная, предпоследняя - согласная.  '''
+        """  Метод, возвращающий список слов, у которых последня буква гласная, предпоследняя - согласная.  """
 
         words = re.findall(r'\b\w+\b', text.lower())
         list_true_words = []
@@ -68,14 +68,14 @@ class TextAnalysis:
         return list_true_words
     
     def number_of_lowercase_letters(self, text):
-        '''  Метод, определяющий количество строчных букв.  '''
+        """  Метод, определяющий количество строчных букв.  """
 
         list_lowercase_letters = re.findall(r'[a-z]',text)
 
         return len(list_lowercase_letters)
     
     def removing_words_from_i(self, text):
-        '''  Метод, удаляющий слова, начинающиеся с i.  '''
+        """  Метод, удаляющий слова, начинающиеся с i.  """
 
         list_of_words = []
         # list_of_words = text.split()
@@ -88,7 +88,7 @@ class TextAnalysis:
         return ' '.join(list_of_words)
     
     def latest_word_with_i(self, text):
-        '''  Метод, находящий последнее слово с буквой i.  '''
+        """  Метод, находящий последнее слово с буквой i.  """
 
         list_of_words = []
         # list_of_words = text.split()
@@ -104,19 +104,19 @@ class TextAnalysis:
         return (count_words, latest_word)
     
     def number_of_sentences_in_the_text(self, text):
-        '''  Метод, находящий количество предложений в тексте.  '''
+        """  Метод, находящий количество предложений в тексте.  """
 
         return len(re.findall(r'[.!?]+', text))
     
     def number_of_species_sentences(self, text):
-        '''  Метод находящий кол-во предложений (по видам).  '''   
+        """  Метод находящий кол-во предложений (по видам).  """
 
         return ('Вопросительные', len(re.findall(r'[?]+', text)), 
                 'Побудительные', len(re.findall(r'[.]+', text)), 
                 'Повествовательные', len(re.findall(r'[!]+', text)))
     
     def average_sentence_length_in_characters(self, text):
-        '''  Метод, высчитывающий среднюю длину предложения в символах.  '''
+        """  Метод, высчитывающий среднюю длину предложения в символах.  """
 
         list_of_sentences = re.split(r'[.!?]+', text)
         for sentence in list_of_sentences:
@@ -136,7 +136,7 @@ class TextAnalysis:
         return average_characters
     
     def average_word_length_in_characters(self, text):
-        '''  Метод, высчитывающий среднюю длину слова в символах.  '''
+        """  Метод, высчитывающий среднюю длину слова в символах.  """
 
         list_of_words = re.split(r'[ ]|[\n]|[\t]', text)
         for word in list_of_words:
@@ -156,7 +156,7 @@ class TextAnalysis:
         return average_characters
     
     def number_of_emoticons(self, text):
-        ''' Метод, подсчитывающий количество смайликов в тексте. '''
+        """  Метод, подсчитывающий количество смайликов в тексте.  """
 
         return len(re.findall(r'[:;]-*[()\[\]{}]+', text))
     

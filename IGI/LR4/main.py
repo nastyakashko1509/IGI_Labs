@@ -28,13 +28,13 @@ while True:
             4: ("Сидоров", "Мужской", 185.0),
         }
 
-        file_pickle = "D:\\IGI_Labs\\IGI\\LR4\\input_user.pkl"
+        file_pickle = "D:\\IGI_Labs\\IGI\\LR4\\file_work\\input_user.pkl"
         output_people_1 = dict()
 
         serializ_and_deserializ.serialization_pickle_file(file_pickle, input_people)
         output_people_1 = serializ_and_deserializ.deserialization_pickle_file(file_pickle)
 
-        file_csv = "D:\\IGI_Labs\\IGI\\LR4\\input_user.csv"
+        file_csv = "D:\\IGI_Labs\\IGI\\LR4\\file_work\\input_user.csv"
         output_people_2 = {}
 
         serializ_and_deserializ.serialization_csv_file(file_csv, input_people)
@@ -43,7 +43,7 @@ while True:
         working_with_data.working_with_data_questionnaires(output_people_1, output_people_2)
 
     elif choise_user == 2:
-        file_text = "D:\\IGI_Labs\\IGI\\LR4\\text_user.txt"
+        file_text = "D:\\IGI_Labs\\IGI\\LR4\\file_work\\text_user.txt"
         text_analysis.text_analysis(open(file_text, mode='r').read())
 
     elif choise_user == 6:
