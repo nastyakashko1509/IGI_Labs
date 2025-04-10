@@ -11,7 +11,7 @@ class WorkingWithDataQuestionnaires:
         return None
 
     def the_average_height_of_women(self, dictionary_of_people_data):
-        '''  Метод, позволяющий считать средний рост женщин.  '''
+        """  Метод, позволяющий считать средний рост женщин.  """
         sername_gender_and_height = list(dictionary_of_people_data.values())
         count_woman = 0
         height_woman = 0.0
@@ -27,7 +27,7 @@ class WorkingWithDataQuestionnaires:
         return height_woman
 
     def tallest_man(self, dictionary_of_people_data):
-        '''  Метод, позволяющий находить самого высокого мужчину.  '''
+        """  Метод, позволяющий находить самого высокого мужчину.  """
         sername_gender_and_height = list(dictionary_of_people_data.values())
         sername_tallest_man = str()
         height_tallest_man = 0.0
@@ -41,7 +41,7 @@ class WorkingWithDataQuestionnaires:
         return sername_tallest_man
 
     def people_of_the_same_height(self, dictionary_of_people_data):
-        '''  Метод, который проверяет наличие хотя бы двух людей с одинаковыми ростом.  '''
+        """  Метод, который проверяет наличие хотя бы двух людей с одинаковыми ростом.  """
         sername_gender_and_height = list(dictionary_of_people_data.values())
 
         for i in range(len(sername_gender_and_height)):
@@ -52,7 +52,7 @@ class WorkingWithDataQuestionnaires:
         return False
 
     def information_about_a_person(self, sername_people, dictionary_of_people_data):
-        '''  Метод, возвращающий информаци о человеке по его фамилии.  '''
+        """  Метод, возвращающий информаци о человеке по его фамилии.  """
         sername_gender_and_height = list(dictionary_of_people_data.values())
         information_people = str()
 

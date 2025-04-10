@@ -3,17 +3,20 @@ import csv
 from functions.working_with_data_questionnaires import WorkingWithDataQuestionnaires
 from functions.serialization_and_deserialization import SerializationAndDeserialization
 from functions.text_analysis import TextAnalysis
+from functions.power_series_expansion import PowerSeriesExpansion
 from functions.check_input_user import check_input_user_int
+from functions.check_input_user import check_input_user_double
 
 serializ_and_deserializ = SerializationAndDeserialization()
 working_with_data = WorkingWithDataQuestionnaires()
 text_analysis = TextAnalysis()
+power_series_expansion = PowerSeriesExpansion()
 
 while True:
     print("Выберите задание для выполнения:\n"
         "1) Работа с анкетными данными\n"
         "2) Обработка текста из файла\n"
-        "3) \n"
+        "3) Разложение arccos(x) в степенной ряд\n"
         "4) \n"
         "5) \n"
         "6) Закрыть программу")
@@ -45,6 +48,13 @@ while True:
     elif choise_user == 2:
         file_text = "D:\\IGI_Labs\\IGI\\LR4\\file_work\\text_user.txt"
         text_analysis.text_analysis(open(file_text, mode='r').read())
+
+    elif choise_user == 3:
+        print("Введите х в пределах от -1 до 1:")
+        x = check_input_user_int()
+        print("Введите погрешность в пределах от 0 до 1:")
+        eps = check_input_user_double()
+        power_series_expansion.power_series_expansion_result(x, eps)
 
     elif choise_user == 6:
         break
