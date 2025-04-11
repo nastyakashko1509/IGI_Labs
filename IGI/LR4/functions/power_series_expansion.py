@@ -143,8 +143,6 @@ class PowerSeriesExpansion:
         plt.ylabel('y')
         plt.title('График разложения функции arccos(x) и точной функции')
         plt.legend()
-        plt.annotate('Разложение функции в точке x=0', xy=(0, np.pi/2), xytext=(0.5, np.pi/3),
-             arrowprops=dict(facecolor='black', shrink=0.05))
         plt.axhline(0, color='black',linewidth=1)
         plt.axvline(0, color='black',linewidth=1)
         plt.savefig('D:\\IGI_Labs\\IGI\\LR4\\file_work\\arccos_expansion_plot.png')
@@ -152,6 +150,7 @@ class PowerSeriesExpansion:
         return None
     
     def power_series_expansion_result(self, x, eps):
+        print("arccos(x) = ", self.power_series_expansion(x, eps))
         print("Среднее значение всех элементов суммы ряда: ", self.power_series_expansion(x,eps))
         print("Медиана всех элементов суммы ряда: ", self.median_of_elements(x, eps))
         print("Мода всех элементов суммы ряда: ", self.mode_of_elements(x, eps))

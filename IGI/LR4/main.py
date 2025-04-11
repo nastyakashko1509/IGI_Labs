@@ -1,9 +1,8 @@
-import csv
-
 from functions.working_with_data_questionnaires import WorkingWithDataQuestionnaires
 from functions.serialization_and_deserialization import SerializationAndDeserialization
 from functions.text_analysis import TextAnalysis
 from functions.power_series_expansion import PowerSeriesExpansion
+from functions.working_with_classes import Rectangle, Circle, Square, Rhombus, Triangle, RegularPolygon
 from functions.check_input_user import check_input_user_int
 from functions.check_input_user import check_input_user_double
 
@@ -17,7 +16,7 @@ while True:
         "1) Работа с анкетными данными\n"
         "2) Обработка текста из файла\n"
         "3) Разложение arccos(x) в степенной ряд\n"
-        "4) \n"
+        "4) Работа с классами геометрических фигур\n"
         "5) \n"
         "6) Закрыть программу")
     
@@ -51,10 +50,107 @@ while True:
 
     elif choise_user == 3:
         print("Введите х в пределах от -1 до 1:")
-        x = check_input_user_int()
+        x = check_input_user_double()
         print("Введите погрешность в пределах от 0 до 1:")
         eps = check_input_user_double()
         power_series_expansion.power_series_expansion_result(x, eps)
+
+    elif choise_user == 4:
+        if __name__ == "__main__":
+            while True:
+                print("Какую геометрическую фигуру хотите создать?\n"
+                "1) Прямоугольник\n"
+                "2) Круг\n"
+                "3) Ромб\n"
+                "4) Квадрат\n"
+                "5) Треуголиньк\n"
+                "6) Правильный n-угольник\n"
+                "7) Выйти")
+                choise_user = check_input_user_int()
+
+                if choise_user == 1:
+                    print("Введите ширину прямоуольника:")
+                    width = check_input_user_double()
+
+                    print("Введите длину прямоуольника:")
+                    height = check_input_user_double()
+
+                    print("Введите цвет фигуры (на английском языке):")
+                    color = str(input())
+
+                    rectangle = Rectangle(width, height, color)
+                    print(rectangle.get_info())
+
+                elif choise_user == 2:
+                    print("Введите радиус окружности:")
+                    radius = check_input_user_double()
+
+                    print("Введите цвет фигуры (на английском языке):")
+                    color = str(input())
+
+                    circle = Circle(radius, color)
+                    print(circle.get_info())
+
+                elif choise_user == 3:
+                    print("Введите первую диагональ:")
+                    d1 = check_input_user_double()
+
+                    print("Введите вторую диагональ:")
+                    d2 = check_input_user_double()
+
+                    print("Введите цвет фигуры (на английском языке):")
+                    color = str(input())
+
+                    rhombus = Rhombus(d1, d2, color)
+                    print(rhombus.get_info())
+
+                elif choise_user == 4:
+                    print("Введите сторону квадрата:")
+                    side = check_input_user_double()
+
+                    print("Введите цвет фигуры (на английском языке):")
+                    color = str(input())
+                    
+                    square = Square(side, color)
+                    print(square.get_info())
+
+                elif choise_user == 5:
+                    print("Введите основание треугольника:")
+                    base = check_input_user_double()
+
+                    print("Введите высоту треугольника:")
+                    height = check_input_user_double()
+
+                    print("Введите цвет фигуры (на английском языке):")
+                    color = str(input())
+
+                    triangle = Triangle(base, height, color)
+                    print(triangle.get_info())
+
+                elif choise_user == 6:
+                    print("Введите количество сторон правильного n-угольника:")
+                    n = check_input_user_int()
+
+                    print("Введите длину стороны правильного n-угольника:")
+                    a = check_input_user_double()
+
+                    print("Введите цвет фигуры (на английском языке):")
+                    color = str(input())
+
+                    print("Введите текст, который будет подписывать фигуру:")
+                    label = str(input())
+
+                    regular_polygon = RegularPolygon(n, a, color)
+                    print(regular_polygon.get_info())
+
+                    filename = "D:\\IGI_Labs\\IGI\\LR4\\file_work\\regular_polygon.png"
+                    regular_polygon.draw(filename, label)
+
+                elif choise_user == 7:
+                    break
+
+                else:
+                    print("Введите цифру от 1 до 7!")
 
     elif choise_user == 6:
         break
