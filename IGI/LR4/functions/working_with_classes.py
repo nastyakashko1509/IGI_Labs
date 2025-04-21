@@ -13,6 +13,13 @@ class GeometricFigure(ABC):
 
     def get_name(self):
         return self._name
+    
+class LogMixin:
+    def log_creation(self):
+        print(f"Создан объект: {self.get_info()}")
+
+    def log_square(self):
+        print(f"Площадь {self.get_name()} вычислена: {self.square_figure():.2f}")
 
 class ColorFigure:
     def __init__(self, color):
@@ -26,14 +33,16 @@ class ColorFigure:
     def color(self, new_color):
         self._color = new_color
 
-class Rectangle(GeometricFigure):
+class Rectangle(GeometricFigure, LogMixin):
     def __init__(self, width, height, color):
         super().__init__("Прямоугольник")
         self.width = width
         self.height = height
         self.color_figure = ColorFigure(color)
+        self.log_creation()
 
     def square_figure(self):
+        self.log_square()
         return self.width * self.height
 
     def get_info(self):

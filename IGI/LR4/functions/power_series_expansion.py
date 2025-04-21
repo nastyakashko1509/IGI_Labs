@@ -133,7 +133,7 @@ class PowerSeriesExpansion:
     def plotting_function_graphs(self, eps):
         """  Функция, строящая графики функции и суммы ряда, сохраняющая их в файл.  """
 
-        x_values = np.linspace(-1, 1, 400)
+        x_values = np.linspace(-1, 1, 400) # массив из 400 равномерно распределённых значений на отрезке [-1, 1]
         y_series_values = [self.power_series_expansion(x, eps) for x in x_values]
         y_exact_values = np.arccos(x_values) 
         plt.figure(figsize=(10, 6))

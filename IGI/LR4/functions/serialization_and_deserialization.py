@@ -16,7 +16,7 @@ class SerializationAndDeserialization:
         return output_people
     
     def serialization_csv_file(self, file, input_user):
-        with open(file, mode='w+', newline='', encoding='utf-8') as f:
+        with open(file, mode='w+', newline='', encoding='utf-8') as f:  # newline предотвращает добавление пустых строк между строками CSV
             writer = csv.writer(f, dialect='excel')    
             writer.writerow(["ID", "Фамилия", "Пол", "Рост"])  
             for id, (last_name, gender, height) in input_user.items():

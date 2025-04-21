@@ -1,8 +1,11 @@
+import numpy as np
+
 from functions.working_with_data_questionnaires import WorkingWithDataQuestionnaires
 from functions.serialization_and_deserialization import SerializationAndDeserialization
 from functions.text_analysis import TextAnalysis
 from functions.power_series_expansion import PowerSeriesExpansion
 from functions.working_with_classes import Rectangle, Circle, Square, Rhombus, Triangle, RegularPolygon
+from functions.working_with_matrices import WorkingWithMatrices
 from functions.check_input_user import check_input_user_int
 from functions.check_input_user import check_input_user_double
 
@@ -10,6 +13,8 @@ serializ_and_deserializ = SerializationAndDeserialization()
 working_with_data = WorkingWithDataQuestionnaires()
 text_analysis = TextAnalysis()
 power_series_expansion = PowerSeriesExpansion()
+working_with_matrices = WorkingWithMatrices()
+
 
 while True:
     print("Выберите задание для выполнения:\n"
@@ -17,7 +22,7 @@ while True:
         "2) Обработка текста из файла\n"
         "3) Разложение arccos(x) в степенной ряд\n"
         "4) Работа с классами геометрических фигур\n"
-        "5) \n"
+        "5) Работа с матрицей и библиотекой NumPy\n"
         "6) Закрыть программу")
     
     choise_user = check_input_user_int()
@@ -151,6 +156,22 @@ while True:
 
                 else:
                     print("Введите цифру от 1 до 7!")
+
+    elif choise_user == 5:
+        print("Введите количество строк матрицы:")
+        col_str = check_input_user_int()
+
+        print("Введите количество столбцов матрицы:")
+        col_stl = check_input_user_int()
+
+        matrix = np.random.randint(0, 21, (col_str, col_stl))
+        print("Полученная матрица:\n", matrix)
+
+        print("Изменены максимальные элементы первого и последнего столбца:\n", 
+              working_with_matrices.replacement_of_the_largest_elements(matrix))
+        
+        print("Коэффициент корреляции между элементами первого и последнего столбца: ", 
+              working_with_matrices.definition_of_correlation_coefficient(matrix))
 
     elif choise_user == 6:
         break
