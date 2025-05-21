@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Словарь терминов и понятий (FAQ)</title>
+    <style>
+        body {
+            background-color: #f7f3ef;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: brown;
+            text-shadow: 2px 2px 0px black;
+            margin-bottom: 40px;
+        }
+
+        .faq-container {
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+            background-color: white;
+            border: 2px solid #8B4513;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+            text-align: left;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #8B0000;
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .faq-answer {
+            color: #333;
+            padding-left: 15px;
+        }
+
+        .faq-no-answer {
+            font-style: italic;
+            color: gray;
+            padding-left: 15px;
+        }
+
+        form {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: white;
+            border: 2px solid #8B4513;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+            text-align: left;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            border: 1px solid #8B4513;
+            padding: 8px;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #A0522D;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Вопросы и ответы</h1>
+
+    <div class="faq-container">
+        {% for faq in faqs %}
+            <div class="faq-item">
+                <div class="faq-question">{{ faq.question }}</div>
+                {% if faq.answer %}
+                    <div class="faq-answer">{{ faq.answer|linebreaks }}</div>
+                {% else %}
+                    <div class="faq-no-answer">Ответ пока не дан</div>
+                {% endif %}
+                <div class="published-date" style="font-size: 0.8em; color: gray; margin-top: 5px;">
+                    Добавлено: {{ faq.added_date|date:"d.m.Y" }}
+                </div>
+            </div>
+        {% empty %}
+            <p>Пока вопросов нет.</p>
+        {% endfor %}
+    </div>
+
+    <form method="post" action="{% url 'faq_list' %}">
+        {% csrf_token %}
+        <label for="question">Задайте ваш вопрос:</label><br>
+        <textarea name="question" id="question" placeholder="Введите ваш вопрос здесь..." required></textarea>
+        <button type="submit">Отправить вопрос</button>
+    </form>
+
+    <a href="{% url 'main' %}">← Назад на главную</a>
+
+</body>
+</html>

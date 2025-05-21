@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+    <style>
+        body {
+            background-color: #f5f0e6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #5c4033;
+            text-shadow: 1px 1px 2px black;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #fff8f0;
+            display: inline-block;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        form p {
+            text-align: left;
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #3d2b1f;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 25px;
+            font-size: 18px;
+            background-color: #8b5e3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #a47148;
+        }
+
+        .google-login {
+            margin-top: 25px;
+            display: block;
+            font-size: 16px;
+            color: #4285F4;
+            text-decoration: none;
+        }
+
+        .google-login:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Вход в виртуальный музей</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Войти</button>
+    </form>
+
+    <a class="google-login" href="{% url 'social:begin' 'google-oauth2' %}">Войти через Google</a>
+
+</body>
+</html>

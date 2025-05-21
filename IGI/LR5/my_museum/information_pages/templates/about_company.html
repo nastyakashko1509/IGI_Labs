@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>О компании</title>
+    <style>
+        body {
+            background-color: #f7f3ef;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px 20px 100px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: brown;
+            text-shadow: 2px 2px 0px black;
+            margin-bottom: 40px;
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border: 2px solid #8B4513;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+            text-align: left;
+        }
+
+        .about-container p {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>О компании</h1>
+
+    <div class="about-container">
+        {% if about %}
+            <p>{{ about.content|linebreaks }}</p>
+        {% else %}
+            <p>Информация о компании скоро появится.</p>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'main' %}">← Назад на главную</a>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Шутка о программировании</title>
+    <style>
+        body {
+            background-color: #f5f0e6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #5c4033;
+            text-shadow: 1px 1px 2px black;
+            margin-bottom: 30px;
+        }
+
+        .joke-box {
+            background-color: #fff8f0;
+            display: inline-block;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .setup {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3d2b1f;
+            margin-bottom: 20px;
+        }
+
+        .punchline {
+            font-size: 18px;
+            color: #5c4033;
+            margin-top: 10px;
+        }
+
+        .refresh-button {
+            margin-top: 30px;
+            padding: 10px 25px;
+            font-size: 18px;
+            background-color: #8b5e3c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .refresh-button:hover {
+            background-color: #a47148;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Шутка о программировании</h2>
+
+    <div class="joke-box">
+        <div class="setup">{{ joke.setup }}</div>
+        <div class="punchline">{{ joke.punchline }}</div>
+        {% if gif_url %}
+            <div style="margin-top: 20px;">
+                <img src="{{ gif_url }}" alt="Programming gif" style="max-width: 100%; border-radius: 10px;">
+            </div>
+        {% endif %}
+        <form method="get">
+            <button class="refresh-button" type="submit">Ещё шутку</button>
+        </form>
+    </div>
+
+    <a href="{% url 'main' %}">← Назад на главную</a>
+
+</body>
+</html>

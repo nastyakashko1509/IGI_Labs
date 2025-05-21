@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Employee</title>
+</head>
+<body>
+    <h1>Edit Employee</h1>
+    
+    <!-- Сообщения об ошибках -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label>Full Name:</label>
+        <input type="text" name="full_name" value="{{ employee.full_name }}" required><br>
+        
+        <label>Phone:</label>
+        <input type="text" name="phone" value="{{ employee.phone }}" required><br>
+        
+        <label>Email:</label>
+        <input type="email" name="email" value="{{ employee.email }}" required><br>
+        
+        <label>Date of Birth:</label>
+        <input type="date" name="date_of_birth" value="{{ employee.date_of_birth|date:'Y-m-d' }}"><br>
+        
+        <label>Bio:</label>
+        <textarea name="bio">{{ employee.bio }}</textarea><br>
+        
+        <label>Photo:</label>
+        {% if employee.photo %}
+            <img src="{{ employee.photo.url }}" width="100"><br>
+        {% endif %}
+        <input type="file" name="photo"><br>
+        
+        <label>Position:</label>
+        <select name="position">
+            {% for position in positions %}
+                <option value="{{ position.id }}" {% if position.id == employee.position.id %}selected{% endif %}>
+                    {{ position.name }}
+                </option>
+            {% endfor %}
+        </select><br>
+        
+        <label>Halls:</label>
+        <select name="halls" multiple>
+            {% for hall in halls %}
+                <option value="{{ hall.id }}" {% if hall in employee.halls.all %}selected{% endif %}>
+                    {{ hall.name }}
+                </option>
+            {% endfor %}
+        </select><br>
+        
+        <label>Work Description:</label>
+        <textarea name="work_description">{{ employee.work_description }}</textarea><br>
+        
+        <button type="submit">Update</button>
+    </form>
+    
+    <a href="{% url 'employee_list' %}">Back to list</a>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Информация сотрудника</title>
+    <style>
+        body {
+            background-color: #f5f0e6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px 20px;
+            color: #5c4033;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #8b5e3c;
+            padding-bottom: 5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: #3d2b1f;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 40px;
+            margin-bottom: 30px;
+            font-size: 18px;
+            color: #5c4033;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #5c4033;
+            font-style: italic;
+            margin-top: 15px;
+        }
+
+        pre.calendar {
+            background-color: #fff8dc;
+            padding: 15px;
+            border: 1px solid #8b5e3c;
+            font-family: monospace;
+            font-size: 16px;
+            white-space: pre-wrap;
+            margin-top: 30px;
+            max-width: 400px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 16px;
+            color: #8b5e3c;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Добро пожаловать, {{ employee.full_name }}</h1>
+
+<p>Сегодня: {{ current_date }} (часовой пояс: {{ user_timezone }})</p>
+
+<h2>Календарь текущего месяца:</h2>
+<pre class="calendar">{{ calendar_text }}</pre>
+
+<h2>Выставки, за которые вы отвечаете:</h2>
+{% if exhibitions %}
+    <ul>
+        {% for exhibition in exhibitions %}
+            <li>
+                <strong>{{ exhibition.title }}</strong> — {{ exhibition.exposition_description }}<br>
+                <small>
+                    Дата начала UTC: {{ exhibition.start_time_utc }}<br>
+                    Дата начала локально: {{ exhibition.start_time_local }}<br>
+                    Дата окончания UTC: {{ exhibition.end_time_utc }}<br>
+                    Дата окончания локально: {{ exhibition.end_time_local }}
+                </small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Вы пока не закреплены ни за одной выставкой.</p>
+{% endif %}
+
+<h2>Ваши экскурсии:</h2>
+{% if tours_data %}
+    <ul>
+        {% for tour_info in tours_data %}
+            <li>
+                {{ tour_info.tour.title }} ({{ tour_info.tour.topic }})<br>
+                <small>Начало UTC: {{ tour_info.start_time_utc }}<br>
+                Начало локально: {{ tour_info.start_time_local }}<br>
+                Конец UTC: {{ tour_info.end_time_utc }}<br>
+                Конец локально: {{ tour_info.end_time_local }}</small>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>У вас нет назначенных экскурсий.</p>
+{% endif %}
+
+<div class="footer">
+    <a href="{% url 'home' %}">← Назад на главную</a>
+</div>
+
+</body>
+</html>

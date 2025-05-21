@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Промокоды и купоны</title>
+    <style>
+        body {
+            background-color: #f7f3ef;
+            font-family: Arial, sans-serif;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: brown;
+            font-size: 32px;
+            text-shadow: 2px 2px 0 black;
+            margin-bottom: 40px;
+        }
+
+        .promo-section {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            background-color: white;
+            border: 2px solid #8B4513;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+            text-align: left;
+        }
+
+        .promo-section h2 {
+            color: #8B0000;
+            border-bottom: 1px solid #8B4513;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .promo-item {
+            margin-bottom: 20px;
+        }
+
+        .promo-code {
+            font-weight: bold;
+            font-size: 18px;
+            color: #8B4513;
+        }
+
+        .promo-description {
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .promo-valid {
+            font-size: 0.9em;
+            color: gray;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Промокоды и купоны</h1>
+
+<div class="promo-section">
+    <h2>Действующие промокоды</h2>
+    {% if active_codes %}
+        {% for promo in active_codes %}
+            <div class="promo-item">
+                <div class="promo-code">{{ promo.code }}</div>
+                <div class="promo-description">{{ promo.description }}</div>
+                <div class="promo-valid">Действует до: {{ promo.valid_until|date:"d.m.Y" }}</div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Нет действующих промокодов.</p>
+    {% endif %}
+</div>
+
+<div class="promo-section">
+    <h2>Архив промокодов</h2>
+    {% if archived_codes %}
+        {% for promo in archived_codes %}
+            <div class="promo-item">
+                <div class="promo-code">{{ promo.code }}</div>
+                <div class="promo-description">{{ promo.description }}</div>
+                <div class="promo-valid">Истёк: {{ promo.valid_until|date:"d.m.Y" }}</div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Архив пуст.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>

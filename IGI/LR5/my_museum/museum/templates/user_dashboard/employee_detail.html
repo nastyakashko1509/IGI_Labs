@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ employee.full_name }}</title>
+    <style>
+        body {
+            background-color: #f5f0e6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 40px;
+            color: #3d2b1f;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff8f0;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .employee-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #8b5e3c;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #5c4033;
+        }
+
+        .position {
+            font-size: 18px;
+            color: #7a5e47;
+            margin-bottom: 20px;
+        }
+
+        .contact, .bio {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: #5c4033;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        {% if employee.photo %}
+            <img src="{{ employee.photo.url }}" class="employee-photo" alt="Фото {{ employee.full_name }}">
+        {% else %}
+            <img src="{% static 'images/default-avatar.png' %}" class="employee-photo" alt="Без фото">
+        {% endif %}
+
+        <h1>{{ employee.full_name }}</h1>
+        <div class="position">{{ employee.position.title }}</div>
+        <div class="contact">📞 {{ employee.phone }}</div>
+        <div class="contact">📧 {{ employee.email }}</div>
+        <div class="bio">{{ employee.bio }}</div>
+
+        <a href="{% url 'employee' %}">← Назад ко всем сотрудникам</a>
+    </div>
+
+</body>
+</html>

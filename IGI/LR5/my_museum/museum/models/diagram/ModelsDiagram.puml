@@ -1,0 +1,70 @@
+@startuml Diagram
+
+abstract class BaseModel {
+    created_at: DateTime
+    updated_at: DateTime
+}
+
+class User_Пользователь {
+    <<external>>
+}
+class AdmUser_ПользовательСистема {
+    <<external>>
+}
+
+class ArtType_ВидИскусства 
+
+class Position_Должность 
+
+class Hall_Холл 
+
+class Employee_Сотрудник 
+
+class Client_Клиент 
+
+class Exhibit_Экспонат 
+
+class Exposition_Экспозиция 
+
+class Exhibition_Выставка 
+
+class Ticket_Билет 
+
+class Purchase_Покупка 
+
+class Tour_Экскурсия 
+
+BaseModel <|-- ArtType_ВидИскусства
+BaseModel <|-- Position_Должность
+BaseModel <|-- Hall_Холл
+BaseModel <|-- Employee_Сотрудник
+BaseModel <|-- Client_Клиент
+BaseModel <|-- Exhibit_Экспонат
+BaseModel <|-- Exposition_Экспозиция
+BaseModel <|-- Exhibition_Выставка
+BaseModel <|-- Ticket_Билет
+BaseModel <|-- Purchase_Покупка
+BaseModel <|-- Tour_Экскурсия
+
+AdmUser_ПользовательСистема --> Employee_Сотрудник : user (OneToOne)
+User_Пользователь --> Client_Клиент : user (OneToOne)
+Position_Должность --> Employee_Сотрудник : position (FK)
+Hall_Холл --> Employee_Сотрудник : halls (M2M)
+
+ArtType_ВидИскусства --> Exhibit_Экспонат : art_type (FK)
+Hall_Холл --> Exhibit_Экспонат : hall (FK)
+Exhibit_Экспонат --> Exposition_Экспозиция : exhibits (M2M)
+
+Exposition_Экспозиция --> Exhibition_Выставка : exposition (FK)
+Employee_Сотрудник --> Exhibition_Выставка : responsible_employee (FK)
+Hall_Холл --> Exhibition_Выставка : hall (FK)
+Ticket_Билет --> Exhibition_Выставка : ticket (M2M)
+
+Client_Клиент --> Purchase_Покупка : client (FK)
+Ticket_Билет --> Purchase_Покупка : ticket (FK)
+
+Tour_Экскурсия --> Exhibition_Выставка : exhibitions (M2M)
+Employee_Сотрудник --> Tour_Экскурсия : responsible_employee (FK)
+Ticket_Билет --> Tour_Экскурсия : ticket (M2M)
+
+@enduml

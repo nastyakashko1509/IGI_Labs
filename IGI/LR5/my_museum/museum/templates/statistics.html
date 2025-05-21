@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Статистика продаж</title>
+    <style>
+        body {
+            background-color: #f5f0e6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding-top: 60px;
+        }
+
+        h2 {
+            font-size: 32px;
+            color: #5c4033;
+            text-shadow: 1px 1px 2px black;
+            margin-bottom: 30px;
+        }
+
+        .stat-box {
+            background-color: #fff8f0;
+            display: inline-block;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+            text-align: left;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h3 {
+            font-size: 22px;
+            color: #7c4a27;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #d3bfa6;
+            padding-bottom: 5px;
+        }
+
+        ul.client-list {
+            font-size: 18px;
+            color: #3d2b1f;
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        ul.client-list li {
+            margin: 8px 0;
+        }
+
+        .stat-item {
+            font-size: 18px;
+            color: #5c4033;
+            margin: 5px 0;
+        }
+
+        .total-sales {
+            font-size: 20px;
+            font-weight: bold;
+            color: #5c4033;
+            margin-top: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            text-decoration: none;
+            color: #8b5e3c;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .back-link:hover {
+            color: #a47148;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Статистика продаж</h2>
+
+    <div class="stat-box">
+
+        <!-- Клиенты -->
+        <div class="section">
+            <h3>Список клиентов (по алфавиту)</h3>
+            <ul class="client-list">
+                {% for client in clients %}
+                    <li>{{ client.full_name }} — {{ client.email }}</li>
+                {% empty %}
+                    <li>Нет зарегистрированных клиентов.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Продажи -->
+        <div class="section">
+            <h3>Продажи</h3>
+            <div class="total-sales">Общая сумма продаж: {{ total_sales }} ₽</div>
+            <div class="stat-item"><strong>Средняя сумма продажи:</strong> {{ avg_sale }} ₽</div>
+            <div class="stat-item"><strong>Медиана суммы продажи:</strong> {{ med_sale }} ₽</div>
+            <div class="stat-item"><strong>Мода суммы продажи:</strong> {{ mode_sale }}</div>
+        </div>
+
+        <!-- Возраст клиентов -->
+        <div class="section">
+            <h3>Возраст клиентов</h3>
+            <div class="stat-item"><strong>Средний возраст:</strong> {{ avg_age }} лет</div>
+            <div class="stat-item"><strong>Медианный возраст:</strong> {{ med_age }} лет</div>
+        </div>
+
+        <!-- Билеты -->
+        <div class="section">
+            <h3>Анализ билетов</h3>
+            <div class="stat-item"><strong>Наиболее популярный тип билета:</strong> {{ most_popular_ticket_type }}</div>
+            <div class="stat-item"><strong>Тип билета с наибольшей прибылью:</strong> {{ most_profitable_type }}</div>
+        </div>
+
+    </div>
+
+    <a class="back-link" href="{% url 'home' %}">← Назад на главную</a>
+
+</body>
+</html>

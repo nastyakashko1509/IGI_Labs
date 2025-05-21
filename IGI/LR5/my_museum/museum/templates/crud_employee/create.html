@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Employee</title>
+</head>
+<body>
+    <h1>Create Employee</h1>
+    
+    <!-- Сообщения об ошибках -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <label>Full Name:</label>
+        <input type="text" name="full_name" required><br>
+        
+        <label>Phone:</label>
+        <input type="text" name="phone" required><br>
+        
+        <label>Email:</label>
+        <input type="email" name="email" required><br>
+        
+        <label>Date of Birth:</label>
+        <input type="date" name="date_of_birth" required value="{{ form_values.date_of_birth|default:'' }}">
+        
+        <label>Дата рождения:</label>
+        <input type="date" name="date_of_birth" required value="{{ form_values.date_of_birth|default:'' }}">
+        
+        <label>Photo:</label>
+        <input type="file" name="photo"><br>
+        
+        <label>Position:</label>
+        <select name="position">
+            {% for position in positions %}
+                <option value="{{ position.id }}">{{ position.name }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label>Halls:</label>
+        <select name="halls" multiple>
+            {% for hall in halls %}
+                <option value="{{ hall.id }}">{{ hall.name }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label>Work Description:</label>
+        <textarea name="work_description"></textarea><br>
+        
+        <button type="submit">Create</button>
+    </form>
+    
+    <a href="{% url 'employee_list' %}">Back to list</a>
+</body>
+</html>

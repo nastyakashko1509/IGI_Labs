@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Удаление сотрудника</title>
+    <style>
+        body {
+            background-color: #f7f3ef;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: bold;
+            color: brown;
+            text-shadow: 2px 2px 0px black;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #4b2e1e;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        button[type="submit"] {
+            background-color: #8B0000;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #A52A2A;
+        }
+
+        .button-container a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #8B4513;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin: 10px;
+        }
+
+        .button-container a:hover {
+            background-color: #A0522D;
+        }
+    </style>
+</head>
+<body>
+    <h1>Удаление сотрудника</h1>
+    <p>Вы уверены, что хотите удалить "{{ employee.full_name }}"?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Да, удалить</button>
+    </form>
+
+    <div class="button-container">
+        <a href="{% url 'employee_list' %}">Нет, вернуться назад</a>
+    </div>
+</body>
+</html>

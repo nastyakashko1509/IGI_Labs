@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.p~  
+*.swp
+
+# Env
+env/
+venv/
+ENV/
+.venv/
+.env
+.env.*
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+static/
+
+# Django migrations
+**/migrations/
+!*/migrations/__init__.py
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# mypy
+.mypy_cache/
+
+# Coverage
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# System
+.DS_Store
+Thumbs.db
+
+# JetBrains IDE helper
+*.iml
+
+# Local settings (optional, if you keep them outside version control)
+settings_local.py
