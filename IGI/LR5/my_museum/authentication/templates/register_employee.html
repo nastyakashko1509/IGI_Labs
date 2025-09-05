@@ -3,173 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <title>Регистрация сотрудника</title>
-    <style>
-        body {
-            background-color: #f5f0e6;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            padding-top: 80px;
-        }
-
-        h2 {
-            font-size: 32px;
-            color: #5c4033;
-            text-shadow: 1px 1px 2px black;
-            margin-bottom: 30px;
-        }
-
-        form {
-            background-color: #fff8f0;
-            display: inline-block;
-            padding: 30px 40px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            text-align: left;
-        }
-
-        form p {
-            margin: 15px 0;
-            font-size: 18px;
-        }
-
-        label {
-            font-weight: bold;
-            color: #3d2b1f;
-            display: block;
-            margin-top: 10px;
-        }
-
-        input[type="text"],
-        input[type="password"],
-        input[type="email"],
-        input[type="file"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 8px 10px;
-            margin-top: 5px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-
-        textarea {
-            resize: vertical;
-        }
-
-        .checkbox-group {
-            margin-top: 5px;
-            padding-left: 10px;
-        }
-
-        .checkbox-group input {
-            margin-right: 6px;
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 10px 25px;
-            font-size: 18px;
-            background-color: #8b5e3c;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #a47148;
-        }
-
-        .back-link {
-            margin-top: 20px;
-            display: block;
-            color: #5c4033;
-            font-size: 16px;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .form-wrapper {
-            display: flex;
-            justify-content: center;
-        }
-
-        .error-message {
-            color: red;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
 
 <h2>Регистрация сотрудника музея</h2>
 
-<div class="form-wrapper">
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 
-        {% if error %}
-            <div class="error-message">{{ error }}</div>
-        {% endif %}
+    {% if error %}
+        <div>{{ error }}</div>
+    {% endif %}
 
-        <label>Имя пользователя:</label>
-        <input type="text" name="username" required value="{{ form_values.username|default:'' }}">
+    <label>Имя пользователя:</label>
+    <input type="text" name="username" required value="{{ form_values.username|default:'' }}">
 
-        <label>Пароль:</label>
-        <input type="password" name="password" required>
+    <label>Пароль:</label>
+    <input type="password" name="password" required>
 
-        <label>Почта:</label>
-        <input type="email" name="email" value="{{ form_values.email|default:'' }}">
+    <label>Почта:</label>
+    <input type="email" name="email" value="{{ form_values.email|default:'' }}">
 
-        <label>ФИО:</label>
-        <input type="text" name="full_name" required value="{{ form_values.full_name|default:'' }}">
+    <label>ФИО:</label>
+    <input type="text" name="full_name" required value="{{ form_values.full_name|default:'' }}">
 
-        <label>Дата рождения:</label>
-        <input type="date" name="date_of_birth" required value="{{ form_values.date_of_birth|default:'' }}">
+    <label>Дата рождения:</label>
+    <input type="date" name="date_of_birth" required value="{{ form_values.date_of_birth|default:'' }}">
 
-        <label>Телефон:</label>
-        <input type="text" name="phone" value="{{ form_values.phone|default:'' }}">
+    <label>Телефон:</label>
+    <input type="text" name="phone" value="{{ form_values.phone|default:'' }}">
 
-        <label>О себе:</label>
-        <textarea name="bio" rows="4">{{ form_values.bio|default:'' }}</textarea>
+    <label>О себе:</label>
+    <textarea name="bio" rows="4">{{ form_values.bio|default:'' }}</textarea>
 
-        <label>Фото:</label>
-        <input type="file" name="photo">
+    <label>Фото:</label>
+    <input type="file" name="photo">
 
-        <label>Должность:</label>
-        <select name="position">
-            {% for position in positions %}
-                <option value="{{ position.id }}" {% if form_values.position == position.id|stringformat:"s" %}selected{% endif %}>
-                    {{ position.title }}
-                </option>
-            {% endfor %}
-        </select>
+    <label>Должность:</label>
+    <select name="position">
+        {% for position in positions %}
+            <option value="{{ position.id }}" {% if form_values.position == position.id|stringformat:"s" %}selected{% endif %}>
+                {{ position.title }}
+            </option>
+        {% endfor %}
+    </select>
 
-        <label>Залы:</label>
-        <div class="checkbox-group">
-            {% for hall in halls %}
-                <label>
-                    <input type="checkbox" name="halls" value="{{ hall.id }}"
-                           {% if selected_halls and hall.id|stringformat:"s" in selected_halls %}checked{% endif %}>
-                    {{ hall.name }}
-                </label>
-            {% endfor %}
-        </div>
+    <label>Залы:</label>
+    {% for hall in halls %}
+        <label>
+            <input type="checkbox" name="halls" value="{{ hall.id }}"
+                   {% if selected_halls and hall.id|stringformat:"s" in selected_halls %}checked{% endif %}>
+            {{ hall.name }}
+        </label>
+    {% endfor %}
 
-        <label>Описание работы:</label>
-        <textarea name="work_description" rows="4">{{ form_values.work_description|default:'' }}</textarea>
+    <label>Описание работы:</label>
+    <textarea name="work_description" rows="4">{{ form_values.work_description|default:'' }}</textarea>
 
-        <button type="submit">Зарегистрироваться</button>
-    </form>
-</div>
+    <button type="submit">Зарегистрироваться</button>
+</form>
 
-<a class="back-link" href="{% url 'home' %}">← Вернуться на главную</a>
+<p><a href="{% url 'home' %}">← Вернуться на главную</a></p>
 
 </body>
 </html>

@@ -2,115 +2,46 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Главная</title>
-    <style>
-        body {
-            background-color: #f7f3ef;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding-top: 100px;
-        }
-
-        h1 {
-            font-size: 32px;
-            font-weight: bold;
-            color: brown;
-            text-shadow: 2px 2px 0px black;
-            margin-bottom: 40px;
-        }
-
-        .button-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 60px;
-        }
-
-        .button-container a,
-        .styled-button {
-            display: inline-block;
-            text-decoration: none;
-            background-color: #8B4513;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            width: 300px;
-            text-align: center;
-            border: none;
-            cursor: pointer;
-        }
-
-        .button-container a:hover,
-        .styled-button:hover {
-            background-color: #A0522D;
-        }
-
-        .news-block {
-            background-color: white;
-            border: 2px solid #8B4513;
-            border-radius: 10px;
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 20px;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
-        }
-
-        .news-block img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-
-        .news-block h2 {
-            color: #8B0000;
-            margin-bottom: 10px;
-        }
-
-        .news-block p {
-            color: #333;
-        }
-
-        .published-date {
-            font-size: 0.9em;
-            color: gray;
-            margin-top: 10px;
-        }
-    </style>
+    <title>Главная страница</title>
 </head>
 <body>
 
-    <h1>Главная страница</h1>
-
-    <div class="button-container">
-        <a href="{% url 'about' %}">О компании</a>
-        <a href="{% url 'news_list' %}">Новости музея</a>
-        <a href="{% url 'vacancies' %}">Вакансии</a>
-        <a href="{% url 'employee' %}">Сотрудники музея</a>
-        <a href="{% url 'reviews' %}">Оставить отзыв</a>
-        <a href="{% url 'faq_list' %}">Вопросы и ответы</a>
-        <a href="{% url 'promocodes' %}">Промокоды и купоны</a>
-        <a href="{% url 'privacy_policy' %}">Политика конфедициальности</a>
-        <a href="{% url 'joke' %}">Подними себе настроение</a>
+    <h1><i>- Музей информационных технологий -</i></h1>
+    <img src="/photos/logo.jpg"
+         height="150" width="700">
+    
+         
+    <br><i size="5">Что вы можете увидеть в нашем музее?</i><br>  
+    <img src="/photos/banner/banner1.jpg" height="130" width="130"></td>
+    <img src="/photos/banner/banner2.jpg" height="130" width="130"></td>
+    <img src="/photos/banner/banner3.jpg" height="130" width="130"></td>
+    <img src="/photos/banner/banner4.jpg" height="130" width="130"></td>
+    <img src="/photos/banner/banner5.jpg" height="130" width="130"></td>
+  
+    <div>
+        <a href="{% url 'about' %}">О компании</a><br>
+        <a href="{% url 'news_list' %}">Новости музея</a><br>
+        <a href="{% url 'vacancies' %}">Вакансии</a><br>
+        <a href="{% url 'employee' %}">Сотрудники музея</a><br>
+        <a href="{% url 'reviews' %}">Оставить отзыв</a><br>
+        <a href="{% url 'faq_list' %}">Вопросы и ответы</a><br>
+        <a href="{% url 'promocodes' %}">Промокоды и купоны</a><br>
+        <a href="{% url 'privacy_policy' %}">Политика конфиденциальности</a><br>
+        <a href="{% url 'joke' %}">Подними себе настроение</a><br>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button type="submit" class="styled-button">Выйти</button>
+            <button type="submit">Выйти</button>
         </form>
     </div>
 
     {% if last_news %}
-    <div class="news-block">
         <h2>{{ last_news.title }}</h2>
-        <p><em>{{ last_news.short_description }}</em></p>
+        <p>{{ last_news.short_description }}</p>
         {% if last_news.image %}
-            <img src="{{ last_news.image.url }}" alt="Изображение новости">
+            <img src="{{ last_news.image.url }}" alt="Изображение новости" height="200" width="200">
         {% endif %}
         <p>{{ last_news.content }}</p>
-        <div class="published-date">Опубликовано: {{ last_news.published_at|date:"d.m.Y H:i" }}</div>
-    </div>
+        <div>Опубликовано: {{ last_news.published_at|date:"d.m.Y H:i" }}</div>
     {% else %}
         <p>Новостей пока нет.</p>
     {% endif %}

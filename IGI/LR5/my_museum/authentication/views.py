@@ -126,12 +126,14 @@ def register_client(request):
         email = request.POST.get('email')
         full_name = request.POST.get('full_name')
         date_of_birth = request.POST.get('date_of_birth')
+        phone_number = request.POST.get('phone_number')
 
         form_values = {
             'username': username,
             'email': email,
             'full_name': full_name,
-            'date_of_birth': date_of_birth
+            'date_of_birth': date_of_birth,
+            'phone_number': phone_number
         }
 
         if not (username and password and full_name and date_of_birth):
@@ -146,7 +148,8 @@ def register_client(request):
             user=user,
             full_name=full_name,
             email=email,
-            date_of_birth=date_of_birth
+            date_of_birth=date_of_birth,
+            phone_number=phone_number
         )
 
         try:

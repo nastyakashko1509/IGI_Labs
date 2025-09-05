@@ -4,79 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Сотрудники музея</title>
-    <style>
-        body {
-            background-color: #f5f0e6;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 40px;
-            color: #3d2b1f;
-        }
-
-        h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 40px;
-            color: #5c4033;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        .employee-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-        }
-
-        .employee-card {
-            background-color: #fff8f0;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 280px;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .employee-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 3px solid #8b5e3c;
-        }
-
-        .employee-name {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .employee-position {
-            font-size: 16px;
-            color: #7a5e47;
-            margin-bottom: 10px;
-        }
-
-        .employee-phone, .employee-email {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-
-        .employee-bio {
-            font-size: 14px;
-            margin-top: 10px;
-            color: #5a4433;
-        }
-    </style>
 </head>
 <body>
 
     <h2>Сотрудники музея</h2>
 
-    <form method="get" style="text-align: center; margin-bottom: 30px;">
+    <form method="get">
         <label for="age">Поиск по возрасту:</label>
         <input type="number" name="age" id="age" min="18" max="100" value="{{ request.GET.age }}">
-    
+
         <label for="sort">Сортировать по:</label>
         <select name="sort" id="sort">
             <option value="">---</option>
@@ -87,19 +23,20 @@
         <button type="submit">Найти</button>
     </form>
 
-    <div class="employee-list">
+    <div>
         {% for employee in employees %}
-        <div class="employee-card">
+        <div>
             {% if employee.photo %}
-                <img src="{{ employee.photo.url }}" alt="Фото {{ employee.full_name }}" class="employee-photo">
+                <img src="{{ employee.photo.url }}" alt="Фото {{ employee.full_name }}" width="120" height="120">
             {% else %}
-                <img src="{% static 'images/default-avatar.png' %}" alt="Без фото" class="employee-photo">
+                <img src="{% static 'images/default-avatar.png' %}" alt="Без фото" width="120" height="120">
             {% endif %}
-            <div class="employee-name">{{ employee.full_name }}</div>
-            <div class="employee-position">{{ employee.position.title }}</div>
-            <div class="employee-phone">📞 {{ employee.phone }}</div>
-            <div class="employee-email">📧 {{ employee.email }}</div>
-            <div class="employee-bio">{{ employee.bio|truncatewords:20 }}</div>
+            <div><strong>{{ employee.full_name }}</strong></div>
+            <div>{{ employee.position.title }}</div>
+            <div>📞 {{ employee.phone }}</div>
+            <div>📧 {{ employee.email }}</div>
+            <div>{{ employee.bio|truncatewords:20 }}</div>
+            <hr>
         </div>
         {% empty %}
         <p>Сотрудники не найдены.</p>

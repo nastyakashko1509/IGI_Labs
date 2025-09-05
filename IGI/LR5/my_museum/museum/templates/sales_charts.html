@@ -3,44 +3,14 @@
 <head>
     <meta charset="UTF-8" />
     <title>Выбор графика продаж билетов</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 30px;
-            background: #fafafa;
-            color: #333;
-            text-align: center;
-        }
-        h1 {
-            color: #5c4033;
-            margin-bottom: 40px;
-        }
-        .btn {
-            display: inline-block;
-            margin: 15px;
-            padding: 15px 30px;
-            font-size: 18px;
-            color: #fff;
-            background-color: #8b5e3c;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            cursor: pointer;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-            transition: background-color 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #5c4033;
-        }
-    </style>
 </head>
 <body>
 
 <h1>Выберите график продаж билетов</h1>
 
-<a href="{% url 'sales_by_age_chart' %}" class="btn">По возрастным категориям</a>
-<a href="{% url 'sales_by_day_type_chart' %}" class="btn">По типам дней</a>
-<a href="{% url 'sales_over_time_chart' %}" class="btn">По датам</a>
+<a href="{% url 'sales_by_age_chart' %}">По возрастным категориям</a><br>
+<a href="{% url 'sales_by_day_type_chart' %}">По типам дней</a><br>
+<a href="{% url 'sales_over_time_chart' %}">По датам</a>
 
 </body>
 </html>

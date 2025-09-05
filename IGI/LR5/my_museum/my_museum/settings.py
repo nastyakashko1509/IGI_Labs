@@ -147,7 +147,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email', 'profile']
 SOCIAL_AUTH_GOOGLE_OAUTH2_EXTRA_DATA = ['first_name', 'last_name']
 
 MEDIA_URL = '/photos/'
-MEDIA_ROOT = os.path.join(BASE_DIR, '')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'photos')
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
